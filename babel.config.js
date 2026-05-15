@@ -1,10 +1,22 @@
 module.exports = function (api) {
   api.cache(true);
+
   return {
-    presets: ["babel-preset-expo"],
+    presets: [['babel-preset-expo'], 'nativewind/babel'],
+
     plugins: [
-      // Если вы используете Expo Router, этот плагин обычно
-      // уже включен в пресет, но иногда его стоит проверить
+      [
+        'module-resolver',
+        {
+          root: ['./'],
+
+          alias: {
+            '@': './',
+            'tailwind.config': './tailwind.config.js',
+          },
+        },
+      ],
+      'react-native-worklets/plugin',
     ],
   };
 };
